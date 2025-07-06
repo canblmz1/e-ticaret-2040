@@ -1,0 +1,415 @@
+/* E-Ticaret 2040 - Geleceğin Alışveriş Deneyimi */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Google Fonts - Futuristik Fontlar */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+/* Global Styles */
+:root {
+  --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  --neon-blue: #00d4ff;
+  --neon-purple: #8b5cf6;
+  --neon-pink: #f472b6;
+  --neon-green: #00f5a0;
+  --cyber-bg: #0f172a;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+}
+
+/* Custom Components */
+@layer components {
+  /* Glass Morphism Effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .glass-dark {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  /* Futuristic Button */
+  .btn-futuristic {
+    @apply relative px-8 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-lg;
+    @apply transform transition-all duration-300 hover:scale-105;
+    @apply shadow-lg hover:shadow-neon;
+    @apply border border-transparent hover:border-primary-400;
+    @apply overflow-hidden;
+  }
+
+  .btn-futuristic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-futuristic:hover::before {
+    left: 100%;
+  }
+
+  /* Card Styles */
+  .card-futuristic {
+    @apply glass rounded-xl p-6 transform transition-all duration-300;
+    @apply hover:scale-105 hover:shadow-cyber;
+    @apply border border-white/20 hover:border-primary-400/50;
+  }
+
+  .card-product {
+    @apply bg-dark-800/50 backdrop-blur-sm rounded-xl overflow-hidden;
+    @apply border border-dark-600 hover:border-primary-500/50;
+    @apply transform transition-all duration-300 hover:scale-105;
+    @apply shadow-lg hover:shadow-2xl hover:shadow-primary-500/20;
+  }
+
+  /* Input Styles */
+  .input-futuristic {
+    @apply w-full px-4 py-3 bg-dark-800/50 border border-dark-600 rounded-lg;
+    @apply text-gray-100 placeholder-gray-400;
+    @apply focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20;
+    @apply transition-all duration-300;
+    @apply backdrop-blur-sm;
+  }
+
+  .input-futuristic:focus {
+    @apply shadow-lg shadow-primary-500/20;
+  }
+
+  /* Neon Effects */
+  .neon-border {
+    border: 2px solid transparent;
+    background: linear-gradient(var(--cyber-bg), var(--cyber-bg)) padding-box,
+                linear-gradient(45deg, var(--neon-blue), var(--neon-purple)) border-box;
+  }
+
+  .neon-text {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue);
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue),
+                inset 0 0 20px rgba(0, 212, 255, 0.1);
+  }
+
+  /* Loading Animations */
+  .loading-dots {
+    @apply inline-flex space-x-1;
+  }
+
+  .loading-dots > div {
+    @apply w-2 h-2 bg-primary-500 rounded-full animate-pulse;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
+  }
+
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Hologram Effect */
+  .hologram {
+    position: relative;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    background-size: 250% 250%;
+    animation: hologram 3s ease-in-out infinite;
+  }
+
+  .hologram::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0,212,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply relative px-4 py-2 text-gray-300 hover:text-white transition-all duration-300;
+    @apply before:absolute before:bottom-0 before:left-0 before:w-0 before:h-0.5;
+    @apply before:bg-gradient-to-r before:from-primary-500 before:to-secondary-500;
+    @apply before:transition-all before:duration-300 hover:before:w-full;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-50;
+    @apply flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply glass-dark rounded-xl max-w-md w-full p-6;
+    @apply transform transition-all duration-300;
+    @apply border border-white/20;
+  }
+
+  /* Shopping Cart Styles */
+  .cart-item {
+    @apply glass-dark rounded-lg p-4 mb-4;
+    @apply border border-white/10 hover:border-primary-500/30;
+    @apply transition-all duration-300;
+  }
+
+  /* Product Card Hover Effects */
+  .product-card {
+    @apply relative overflow-hidden rounded-xl;
+    @apply bg-dark-800/50 backdrop-blur-sm;
+    @apply border border-dark-600 hover:border-primary-500/50;
+    @apply transform transition-all duration-500;
+    @apply group cursor-pointer;
+  }
+
+  .product-card:hover {
+    @apply scale-105 shadow-2xl shadow-primary-500/20;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.7s;
+    z-index: 1;
+  }
+
+  .product-card:hover::before {
+    left: 100%;
+  }
+
+  /* Button Variants */
+  .btn-ghost {
+    @apply px-6 py-3 bg-transparent border-2 border-primary-500;
+    @apply text-primary-400 hover:text-white hover:bg-primary-500;
+    @apply rounded-lg transition-all duration-300;
+    @apply hover:shadow-lg hover:shadow-primary-500/30;
+  }
+
+  .btn-neon {
+    @apply px-6 py-3 bg-transparent border-2 border-neon-blue;
+    @apply text-neon-blue hover:text-dark-900 hover:bg-neon-blue;
+    @apply rounded-lg transition-all duration-300;
+    @apply hover:shadow-lg hover:shadow-neon-blue/50;
+    @apply hover:glow;
+  }
+
+  /* Search Bar */
+  .search-bar {
+    @apply relative w-full max-w-md;
+  }
+
+  .search-input {
+    @apply w-full px-4 py-3 pl-12 bg-dark-800/80 backdrop-blur-sm;
+    @apply border border-dark-600 rounded-full;
+    @apply text-gray-100 placeholder-gray-400;
+    @apply focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20;
+    @apply transition-all duration-300;
+  }
+
+  .search-input:focus {
+    @apply shadow-lg shadow-primary-500/20;
+  }
+
+  /* Rating Stars */
+  .star-rating {
+    @apply flex items-center space-x-1;
+  }
+
+  .star {
+    @apply w-5 h-5 text-yellow-400 fill-current;
+    @apply transition-all duration-200;
+  }
+
+  .star.empty {
+    @apply text-gray-600;
+  }
+
+  /* Price Display */
+  .price-display {
+    @apply flex items-center space-x-2;
+  }
+
+  .price-current {
+    @apply text-2xl font-bold text-primary-400;
+  }
+
+  .price-original {
+    @apply text-lg text-gray-500 line-through;
+  }
+
+  .price-discount {
+    @apply text-sm bg-red-500 text-white px-2 py-1 rounded-full;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-new {
+    @apply bg-green-500/20 text-green-400 border border-green-500/30;
+  }
+
+  .badge-sale {
+    @apply bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .badge-featured {
+    @apply bg-purple-500/20 text-purple-400 border border-purple-500/30;
+  }
+
+  /* Notification Toast */
+  .toast {
+    @apply glass-dark rounded-lg p-4 text-white max-w-sm;
+    @apply border border-white/20 shadow-xl;
+    @apply transform transition-all duration-300;
+  }
+
+  .toast.success {
+    @apply border-green-500/50 bg-green-900/20;
+  }
+
+  .toast.error {
+    @apply border-red-500/50 bg-red-900/20;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply w-8 h-8 border-4 border-primary-200 border-t-primary-600 rounded-full;
+    animation: spin 1s linear infinite;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  
+  .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+  .text-shadow-lg { text-shadow: 0 4px 8px rgba(0,0,0,0.7); }
+  
+  .backdrop-blur-xs { backdrop-filter: blur(2px); }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass, .glass-dark {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .product-card:hover {
+    transform: none;
+  }
+  
+  .btn-futuristic {
+    @apply px-6 py-2 text-sm;
+  }
+}
+
+/* High Performance Mode for Lower-end Devices */
+@media (max-width: 480px) {
+  .hologram,
+  .cyber-grid,
+  .floating {
+    animation: none;
+  }
+  
+  .glass,
+  .glass-dark {
+    backdrop-filter: none;
+    background: rgba(15, 23, 42, 0.9);
+  }
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
